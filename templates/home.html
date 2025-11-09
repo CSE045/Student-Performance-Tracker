@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Welcome to Student Performance Tracker</h1>
+    <p class="lead">Manage student performance and get personalized suggestions for improvement.</p>
+    <a href="{{ url_for('manage') }}" class="btn btn-primary btn-lg">Manage Students</a>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Manage Students</h2>
+<a href="{{ url_for('add') }}" class="btn btn-success mb-3">Add New Student</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Subject</th>
+            <th>Marks</th>
+            <th>Performance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.class }}</td>
+            <td>{{ student.subject }}</td>
+            <td>{{ student.marks }}</td>
+            <td>
+                {% if student.marks < 40 %}
+                    <span class="badge bg-danger">Needs Improvement</span>
+                {% elif student.marks < 70 %}
+                    <span class="badge bg-warning">Average</span>
+                {% else %}
+                    <span class="badge bg-success">Good</span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{{ url_for('edit', id=student.id) }}" class="btn btn-sm btn-primary">Edit</a>
+                <a href="{{ url_for('delete', id=student.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                {% if student.marks < 70 %}
+                    <a href="{{ url_for('suggestions', id=student.id) }}" class="btn btn-sm btn-info">Suggestions</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

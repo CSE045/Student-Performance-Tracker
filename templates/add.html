@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add New Student</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="class" class="form-label">Class</label>
+        <select class="form-control" id="class" name="class" required>
+            <option value="9th">9th</option>
+            <option value="10th">10th</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="subject" class="form-label">Subject</label>
+        <select class="form-control" id="subject" name="subject" required>
+            <option value="Math">Math</option>
+            <option value="Science">Science</option>
+            <option value="English">English</option>
+            <option value="Computer">Computer</option>
+            <option value="Social">Social</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="marks" class="form-label">Marks</label>
+        <input type="number" class="form-control" id="marks" name="marks" min="0" max="100" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Student</button>
+    <a href="{{ url_for('manage') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

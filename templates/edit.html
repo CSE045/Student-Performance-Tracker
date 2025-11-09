@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Edit Student</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="{{ student.name }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="class" class="form-label">Class</label>
+        <select class="form-control" id="class" name="class" required>
+            <option value="9th" {% if student.class == '9th' %}selected{% endif %}>9th</option>
+            <option value="10th" {% if student.class == '10th' %}selected{% endif %}>10th</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="subject" class="form-label">Subject</label>
+        <select class="form-control" id="subject" name="subject" required>
+            <option value="Math" {% if student.subject == 'Math' %}selected{% endif %}>Math</option>
+            <option value="Science" {% if student.subject == 'Science' %}selected{% endif %}>Science</option>
+            <option value="English" {% if student.subject == 'English' %}selected{% endif %}>English</option>
+            <option value="Computer" {% if student.subject == 'Computer' %}selected{% endif %}>Computer</option>
+            <option value="Social" {% if student.subject == 'Social' %}selected{% endif %}>Social</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="marks" class="form-label">Marks</label>
+        <input type="number" class="form-control" id="marks" name="marks" min="0" max="100" value="{{ student.marks }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Student</button>
+    <a href="{{ url_for('manage') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Suggestions for {{ student.name }}</h2>
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">Student Details</h5>
+        <p><strong>Name:</strong> {{ student.name }}</p>
+        <p><strong>Class:</strong> {{ student.class }}</p>
+        <p><strong>Subject:</strong> {{ student.subject }}</p>
+        <p><strong>Marks:</strong> {{ student.marks }}</p>
+        <p><strong>Performance:</strong> <span class="badge {% if performance == 'Needs Improvement' %}bg-danger{% elif performance == 'Average' %}bg-warning{% else %}bg-success{% endif %}">{{ performance }}</span></p>
+    </div>
+</div>
+
+{% if performance != 'Good' %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Suggestions for {{ student.subject }}</h5>
+        <p class="lead">{{ material_link.tip }}</p>
+        <h6>Recommended Study Materials:</h6>
+        <ul class="list-group">
+            {% for link in material_link.links %}
+            <li class="list-group-item">
+                <a href="{{ link.url }}" target="_blank" class="text-decoration-none">
+                    {{ link.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}
+
+<a href="{{ url_for('manage') }}" class="btn btn-secondary mt-3">Back to Manage Students</a>
+{% endblock %}
